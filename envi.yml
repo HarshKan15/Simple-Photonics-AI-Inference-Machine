@@ -1,0 +1,26 @@
+name: photonic                 # the box's name: conda activate photonic
+channels:                      # the shops, in order of preference
+  - conda-forge                # community builds; the one that has Meep
+  - nodefaults                 # never fall back to Anaconda's default channel
+dependencies:                  # the list itself
+  - python=3.11                # "=" pins a version
+  - pymeep                     # Meep FDTD + MPB; for MPI runs: pymeep=*=mpi_mpich_*
+  - numpy
+  - scipy
+  - matplotlib
+  - h5py                       # reads Meep's .h5 field files
+  - scikit-learn               # the handwritten digits dataset
+  - jupyterlab
+  - ipykernel                  # lets VS Code run notebooks in this box
+  - ipywidgets                 # sliders in notebooks
+  - plotly
+  - voila
+  - nbstripout                 # Git hygiene for notebooks
+  - jupytext
+  - papermill
+  - git-lfs
+  - pip
+  - pip:                       # packages conda gets from pip instead
+      - --extra-index-url https://download.pytorch.org/whl/cpu
+      - torch                  # CPU build: about 2 GB smaller, plenty for this chip
+      - scikit-fem             # the multiphysics heat solver
